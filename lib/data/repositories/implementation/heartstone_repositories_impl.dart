@@ -1,6 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:heartstone_cards_bloc/core/exceptions/network_exception.dart';
 import 'package:heartstone_cards_bloc/data/models/info/info.dart';
-import 'package:retrofit/dio.dart';
 
 import '../../datasources/remote/heartstone_api_service.dart';
 import '../abstract/heartstone_repositories.dart';
@@ -12,15 +12,17 @@ class HeartsoneRepositoryImpl implements HeartStoneRepository {
 
   @override
   Future<Info> getInfo() async {
-    final httpResponse = await _heartStoneApiService.getInfo();
+    final data = await _heartStoneApiService.getInfo().catchError((error) {
+      if (error is DioError) {
+        throw NetworkException(
+            errorMessage: error.response?.statusMessage ?? "No Message",
+            statusCode: error.response?.statusCode ?? 0);
+      } else {
+        throw NetworkException(
+            errorMessage: "Some thing go wrong", statusCode: -1);
+      }
+    });
 
-    if (httpResponse.response.statusCode! >= 200 &&
-        httpResponse.response.statusCode! < 300) {
-      return httpResponse.data;
-    } else {
-      throw NetworkException(
-          errorMessage: httpResponse.response.statusMessage ?? "No Message",
-          statusCode: httpResponse.response.statusCode ?? 0);
-    }
+    return data;
   }
 }

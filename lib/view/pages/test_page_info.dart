@@ -23,10 +23,12 @@ class TestInfoPage extends StatelessWidget {
                       const Center(child: CircularProgressIndicator()),
                   loaded: (data) => ListOfInfoData(info: data),
                   error: (error) => Center(
-                          child: Row(
+                          child: Column(
                         children: [
+                          const Spacer(),
                           Text(error.statusCode.toString()),
                           Text(error.errorMessage),
+                          const Spacer(),
                         ],
                       )));
             },

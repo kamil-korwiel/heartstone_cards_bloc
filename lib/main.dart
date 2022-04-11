@@ -24,12 +24,16 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-        create: (context) => InfoBloc(HeartsoneRepositoryImpl(
-            HeartstoneApiService(Dio()
-              ..options = BaseOptions(headers: {
-                'x-rapidapi-host': ApiConsts.hostApi,
-                'x-rapidapi-key': ApiConsts.apiKey
-              })))),
+        create: (context) =>
+            InfoBloc(HeartsoneRepositoryImpl(HeartstoneApiService(Dio()
+              ..options = BaseOptions(
+                headers: {
+                  'x-rapidapi-host': ApiConsts.hostApi,
+                  'x-rapidapi-key': ApiConsts.apiKey
+                },
+                connectTimeout: 5000,
+                receiveTimeout: 3000,
+              )))),
         child: const TestInfoPage(),
       ),
     );

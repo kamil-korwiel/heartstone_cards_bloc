@@ -95,12 +95,18 @@ class __$GetCopyWithImpl<$Res> extends _$InfoEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Get implements _Get {
+class _$_Get with DiagnosticableTreeMixin implements _Get {
   const _$_Get();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'InfoEvent.get()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'InfoEvent.get'));
   }
 
   @override
@@ -288,12 +294,18 @@ class __$InitialCopyWithImpl<$Res> extends _$InfoStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
+class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   const _$_Initial();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'InfoState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'InfoState.initial'));
   }
 
   @override
@@ -402,12 +414,18 @@ class __$LoadingCopyWithImpl<$Res> extends _$InfoStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loading implements _Loading {
+class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   const _$_Loading();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'InfoState.loading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'InfoState.loading'));
   }
 
   @override
@@ -538,15 +556,23 @@ class __$LoadedCopyWithImpl<$Res> extends _$InfoStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loaded implements _Loaded {
+class _$_Loaded with DiagnosticableTreeMixin implements _Loaded {
   const _$_Loaded(this.data);
 
   @override
   final Info data;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'InfoState.loaded(data: $data)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'InfoState.loaded'))
+      ..add(DiagnosticsProperty('data', data));
   }
 
   @override
@@ -680,15 +706,23 @@ class __$ErrorCopyWithImpl<$Res> extends _$InfoStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Error implements _Error {
+class _$_Error with DiagnosticableTreeMixin implements _Error {
   const _$_Error(this.error);
 
   @override
   final NetworkException error;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'InfoState.error(error: $error)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'InfoState.error'))
+      ..add(DiagnosticsProperty('error', error));
   }
 
   @override

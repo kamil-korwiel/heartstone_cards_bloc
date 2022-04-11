@@ -13,5 +13,5 @@ abstract class HeartstoneApiService {
       _HeartstoneApiService;
 
   @GET("/info")
-  Future<HttpResponse<Info>> getInfo();
+  Future<Info> getInfo();
 }

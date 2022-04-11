@@ -18,20 +18,18 @@ class _HeartstoneApiService implements HeartstoneApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<Info>> getInfo() async {
+  Future<Info> getInfo() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<Info>>(
-            Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/info',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<Info>(
+        Options(method: 'GET', headers: _headers, extra: _extra)
+            .compose(_dio.options, '/info',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Info.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
+    return value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
