@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:heartstone_cards_bloc/core/api_consts.dart';
-import 'package:retrofit/dio.dart';
 import 'package:retrofit/http.dart';
 
 import '../../models/models.dart';
@@ -14,4 +13,7 @@ abstract class HeartstoneApiService {
 
   @GET("/info")
   Future<Info> getInfo();
+
+  @GET("/cards/sets/{nameSet}")
+  Future<List<CardFront>> getSetOfCards(@Path("nameSet") String nameSet);
 }

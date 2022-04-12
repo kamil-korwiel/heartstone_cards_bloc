@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heartstone_cards_bloc/core/api_consts.dart';
+import 'package:heartstone_cards_bloc/logic/blocs/cardfront/cardfront_bloc.dart';
+import 'package:heartstone_cards_bloc/view/pages/test_page_card_grid.dart';
 
 import 'data/datasources/remote/heartstone_api_service.dart';
 import 'data/repositories/implementation/heartstone_repositories_impl.dart';
@@ -25,16 +27,16 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) =>
-            InfoBloc(HeartsoneRepositoryImpl(HeartstoneApiService(Dio()
+            CardfrontBloc(HeartsoneRepositoryImpl(HeartstoneApiService(Dio()
               ..options = BaseOptions(
                 headers: {
                   'x-rapidapi-host': ApiConsts.hostApi,
                   'x-rapidapi-key': ApiConsts.apiKey
                 },
-                connectTimeout: 5000,
-                receiveTimeout: 3000,
+                // connectTimeout: 50000,
+                // receiveTimeout: 30000,
               )))),
-        child: const TestInfoPage(),
+        child: const TestPageCardGrid(),
       ),
     );
   }

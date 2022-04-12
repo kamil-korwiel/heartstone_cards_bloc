@@ -17,9 +17,9 @@ class InfoBloc extends Bloc<InfoEvent, InfoState> {
       try {
         emit(const InfoState.loading());
         final info = await _heartStoneRepository.getInfo();
-        if (kDebugMode) {
-          print(info.patch);
-        }
+        // if (kDebugMode) {
+        //   print(info.patch);
+        // }
         emit(InfoState.loaded(info));
       } on NetworkException catch (e) {
         emit(InfoState.error(e));
